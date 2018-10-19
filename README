@@ -1,4 +1,9 @@
 This is a c++ class made for calculations of arbitrarily large numbers
 
-GNU command for compiling:
-g++ -O3 -std=c++11 *.cpp OperatorOverloads/*.cpp Functions/*.cpp DynamicDecimal/*.cpp
+Makefile setup
+- Include BigInteger's makefile with
+	include BigInteger/BigInteger.mk
+- Add as a prerequisite for your executable target
+	$(BIGINTEGER_MAIN_OBJ)
+- Add as a prerequisite for your clean target
+	BigIntegerClean
