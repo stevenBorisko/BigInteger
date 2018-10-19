@@ -10,6 +10,11 @@ BIGINTEGER_LFLAGS :=
 include $(BIGINTEGER_PATH)src/DynamicDecimal/DynamicDecimal.mk
 
 BIGINTEGER_OBJDIR := $(BIGINTEGER_PATH).ObjectFiles/
+BigIntegerObjectDirectory:
+	mkdir $(BIGINTEGER_OBJDIR)
+	mkdir $(BIGINTEGER_OBJDIR)src/
+	mkdir $(BIGINTEGER_OBJDIR)src/Functions/
+	mkdir $(BIGINTEGER_OBJDIR)src/OperatorOverloads/
 
 _BIGINTEGER_DEPS := src/BigInteger.hpp src/DynamicDecimal/DynamicDecimal.hpp
 BIGINTEGER_DEPS := $(foreach OBJ,$(_BIGINTEGER_DEPS),$(BIGINTEGER_PATH)$(OBJ))

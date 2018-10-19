@@ -7,3 +7,6 @@ Makefile setup
 	$(BIGINTEGER_MAIN_OBJ)
 - Add as a prerequisite for your clean target
 	BigIntegerClean
+
+Before compiling, the objectfile directory needs to be created with
+	make BigIntegerObjectDirectory
