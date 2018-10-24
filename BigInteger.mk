@@ -40,14 +40,14 @@ BIGINTEGER_SUB_OBJS := $(DYNAMICDECIMAL_MAIN_OBJ) \
 
 # Main object
 $(BIGINTEGER_MAIN_OBJ): \
-	$(BIGINTEGER_DEPS) $(BIGINTEGER_SUB_OBJS) \
+	$(BIGINTEGER_SUB_OBJS) \
 	$(DYNAMICDECIMAL_MAIN_OBJ)
 	@echo "- - - - BigInteger compiled - - - -"
-	$(LD) -r $(BIGINTEGER_LFLAGS) $(BIGINTEGER_SUB_OBJS) -o $@
+	$(LD) -r $(BIGINTEGER_LFLAGS) $^ -o $@
 	@echo "- - - - BigInteger linked - - - -"
 
 # Sub objects
-$(BIGINTEGER_OBJDIR)%.o: $(BIGINTEGER_PATH)%.cpp
+$(BIGINTEGER_OBJDIR)%.o: $(BIGINTEGER_PATH)%.cpp $(BIGINTEGER_DEPS) 
 	$(CC) -c $(BIGINTEGER_CFLAGS) $< -o $@
 
 # Clean
