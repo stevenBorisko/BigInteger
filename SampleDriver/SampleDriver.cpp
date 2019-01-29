@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "../BigInteger.hpp"
+#include "BigInteger/BigInteger.hpp"
 
 using namespace std;
 
