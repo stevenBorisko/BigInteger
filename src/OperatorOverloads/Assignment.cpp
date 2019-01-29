@@ -1,4 +1,4 @@
-#include "../BigInteger.hpp"
+#include "../../BigInteger.hpp"
 
 BigInteger& BigInteger::operator=(const BigInteger& rhs) {
 	if(this->size != rhs.size) {

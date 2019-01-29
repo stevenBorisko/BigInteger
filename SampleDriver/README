@@ -1,0 +1,10 @@
+Setup:
+	Copy both these file to <path to>/BigInteger/../
+	run `make SampleObjectDirectory`
+
+Compile:
+	`make` with your `-j` of choice
+	Executable: `sample.out`
+
+Clean:
+	`make SampleClean`

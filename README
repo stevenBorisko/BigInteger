@@ -1,5 +1,7 @@
 This is a c++ class made for calculations of arbitrarily large numbers
 
+SampleDriver setup can be found in the README in the `SampleDriver` directory
+
 Makefile setup
 - Include BigInteger's makefile with
 	include BigInteger/BigInteger.mk

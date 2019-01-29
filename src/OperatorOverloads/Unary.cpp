@@ -1,4 +1,4 @@
-#include "../BigInteger.hpp"
+#include "../../BigInteger.hpp"
 
 BigInteger BigInteger::operator!() const {
 	BigInteger ret = BigInteger(!this->Z(),this->size);

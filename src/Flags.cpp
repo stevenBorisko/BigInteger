@@ -1,4 +1,4 @@
-#include "BigInteger.hpp"
+#include "../BigInteger.hpp"
 
 bool BigInteger::Z() const {
 	unsigned long long index = size;

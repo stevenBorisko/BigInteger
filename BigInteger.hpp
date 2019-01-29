@@ -5,7 +5,7 @@
 #include <iostream>
 #include <random>
 
-#include "DynamicDecimal/DynamicDecimal.hpp"
+#include "src/DynamicDecimal/DynamicDecimal.hpp"
 
 /*
 Author:

@@ -1,4 +1,4 @@
-#include "../BigInteger.hpp"
+#include "../../BigInteger.hpp"
 
 bool mersennePrime(const unsigned long long n, std::ostream& os) {
 

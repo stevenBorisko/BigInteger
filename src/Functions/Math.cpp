@@ -1,4 +1,4 @@
-#include "../BigInteger.hpp"
+#include "../../BigInteger.hpp"
 
 BigInteger abs(const BigInteger& num) {
 	return (num.N() ? -(num) : BigInteger(num));

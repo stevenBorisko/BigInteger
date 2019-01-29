@@ -1,4 +1,4 @@
-#include "BigInteger.hpp"
+#include "../BigInteger.hpp"
 
 BigInteger::BigInteger(unsigned long long newSize) :
 

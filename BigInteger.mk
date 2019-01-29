@@ -11,12 +11,13 @@ include $(BIGINTEGER_PATH)src/DynamicDecimal/DynamicDecimal.mk
 
 BIGINTEGER_OBJDIR := $(BIGINTEGER_PATH).ObjectFiles/
 BigIntegerObjectDirectory:
-	mkdir $(BIGINTEGER_OBJDIR)
-	mkdir $(BIGINTEGER_OBJDIR)src/
-	mkdir $(BIGINTEGER_OBJDIR)src/Functions/
-	mkdir $(BIGINTEGER_OBJDIR)src/OperatorOverloads/
+	mkdir -p $(BIGINTEGER_OBJDIR)
+	mkdir -p $(BIGINTEGER_OBJDIR)src/
+	mkdir -p $(BIGINTEGER_OBJDIR)src/Functions/
+	mkdir -p $(BIGINTEGER_OBJDIR)src/OperatorOverloads/
+	@echo "- - - - BigInteger ObjectFile directory created - - - -"
 
-_BIGINTEGER_DEPS := src/BigInteger.hpp src/DynamicDecimal/DynamicDecimal.hpp
+_BIGINTEGER_DEPS := BigInteger.hpp src/DynamicDecimal/DynamicDecimal.hpp
 BIGINTEGER_DEPS := $(foreach OBJ,$(_BIGINTEGER_DEPS),$(BIGINTEGER_PATH)$(OBJ))
 
 _BIGINTEGER_SUB_OBJS := \
@@ -39,9 +40,7 @@ BIGINTEGER_SUB_OBJS := $(DYNAMICDECIMAL_MAIN_OBJ) \
 # --- Rules ---
 
 # Main object
-$(BIGINTEGER_MAIN_OBJ): \
-	$(BIGINTEGER_SUB_OBJS) \
-	$(DYNAMICDECIMAL_MAIN_OBJ)
+$(BIGINTEGER_MAIN_OBJ): $(BIGINTEGER_SUB_OBJS) $(DYNAMICDECIMAL_MAIN_OBJ)
 	@echo "- - - - BigInteger compiled - - - -"
 	$(LD) -r $(BIGINTEGER_LFLAGS) $^ -o $@
 	@echo "- - - - BigInteger linked - - - -"

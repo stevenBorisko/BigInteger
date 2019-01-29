@@ -1,4 +1,4 @@
-#include "../BigInteger.hpp"
+#include "../../BigInteger.hpp"
 
 void BigInteger::zero() {
 	unsigned long long index = size;
