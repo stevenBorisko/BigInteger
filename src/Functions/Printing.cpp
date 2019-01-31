@@ -3,9 +3,9 @@
 #include "../../BigInteger.hpp"
 
 void BigInteger::hexPrint(std::ostream& os) const {
-	unsigned long long mask = 0xF;
-	unsigned long long index = this->size;
-	unsigned long long temp = 0;
+	uint64_t mask = 0xF;
+	uint64_t index = this->size;
+	uint64_t temp = 0;
 	//while(--index && digits[index] == 0) { }
 	//++index;
 	while(index--) {
@@ -24,7 +24,7 @@ void BigInteger::hexPrint(std::ostream& os) const {
 }
 
 void BigInteger::binPrint(std::ostream& os) const {
-	unsigned long long index = size;
+	uint64_t index = size;
 	while(--index && digits[index] == 0) { }
 	++index;
 	while(index--) {
@@ -33,11 +33,11 @@ void BigInteger::binPrint(std::ostream& os) const {
 	}
 }
 
-std::string BigInteger::binDigit(const unsigned long long digit) const {
+std::string BigInteger::binDigit(const uint64_t digit) const {
 	if(digit >= size)
-		return "invalid index in binDigit(unsigned long long)";
+		return "invalid index in binDigit(uint64_t)";
 	std::string retString = "";
-	unsigned long long testDigit = 0b1;
+	uint64_t testDigit = 0b1;
 	testDigit <<= 63;
 	while(testDigit) {
 		retString += ( (digits[digit] & testDigit) ? '1' : '0' );
@@ -50,9 +50,9 @@ void BigInteger::binDump(const std::string filename) const {
 	const char* name = filename.c_str();
 	std::ofstream file;
 	file.open(name);
-	unsigned long long charMask = 0;
-	unsigned long long index = this->size;
-	unsigned long long temp = 0;
+	uint64_t charMask = 0;
+	uint64_t index = this->size;
+	uint64_t temp = 0;
 	char printer = '\0';
 	while(index--) {
 		charMask = 0xFF;
@@ -73,9 +73,9 @@ void BigInteger::decPrint(std::ostream& os) const {
 	BigInteger thisCopy = BigInteger(*this);
 	if(thisCopy.N()) thisCopy.neg();
 	DynamicDecimal acc = DynamicDecimal(0);
-	unsigned long long mask = left;
-	unsigned long long index = thisCopy.size - 1;
-	unsigned long long currDigit = thisCopy.digits[index];
+	uint64_t mask = left;
+	uint64_t index = thisCopy.size - 1;
+	uint64_t currDigit = thisCopy.digits[index];
 
 	mask >>= 1;
 	while(mask) {

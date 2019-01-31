@@ -2,8 +2,11 @@
 #define BIGINTEGER_H
 
 #include <string>
+#include <cstring>
 #include <iostream>
 #include <random>
+
+#include <stdint.h>
 
 #include "src/DynamicDecimal/DynamicDecimal.hpp"
 
@@ -22,33 +25,33 @@ private:
 	// constants used mainly for bit masking //
 
 	// 32 bits of 1
-	static constexpr unsigned long long half = 0b11111111111111111111111111111111;
+	static constexpr uint64_t half = 0b11111111111111111111111111111111;
 	// 64 bits of 1
-	static constexpr unsigned long long full = 0b1111111111111111111111111111111111111111111111111111111111111111;
+	static constexpr uint64_t full = 0b1111111111111111111111111111111111111111111111111111111111111111;
 	// 1 at 64th (index 63) (leftmost) bit
-	static constexpr unsigned long long left = 0b1000000000000000000000000000000000000000000000000000000000000000;
+	static constexpr uint64_t left = 0b1000000000000000000000000000000000000000000000000000000000000000;
 
 	// data
 
 	// number of digits in the number
-	unsigned long long size;
+	uint64_t size;
 	// array of digits in the number
 	// endianness: little
-	unsigned long long* digits;
+	uint64_t* digits;
 
 	// helper function
 
 	// retrieves, in string form, digits at index 'digit'
-	std::string binDigit(const unsigned long long digit) const;
+	std::string binDigit(const uint64_t digit) const;
 
 public:
 
 	// Constructors //
 
 	// creates a number of 'newSize' digits set to zero
-	BigInteger(unsigned long long newSize);
+	BigInteger(uint64_t newSize);
 	// creates a number of 'newSize' digits set to 'initNum'
-	BigInteger(unsigned long long initNum, unsigned long long newSize);
+	BigInteger(uint64_t initNum, uint64_t newSize);
 	// deep copy of rhs
 	BigInteger(const BigInteger& rhs);
 	~BigInteger();
@@ -72,7 +75,7 @@ public:
 	friend BigInteger sqrt(const BigInteger& num);
 	// Power: num ^ exp
 	friend BigInteger pow(const BigInteger& num, const BigInteger& exp);
-	friend BigInteger pow(const BigInteger& num, const unsigned long long& exp);
+	friend BigInteger pow(const BigInteger& num, const uint64_t& exp);
 	// Factorialize
 	friend BigInteger fact(const BigInteger& num);
 	// checks if num1 is divisible by num2
@@ -98,60 +101,60 @@ public:
 	// if digits > size
 		// the whole number will remain in the resized number
 		// the new, most significant digits will be willed in with zeroes
-	void resize(unsigned long long newSize);
+	void resize(uint64_t newSize);
 
 	/*** Operator Overloads ***/
 
 	// Assignment: deep copy //
 	BigInteger& operator=(const BigInteger& rhs);
-	BigInteger& operator=(const unsigned long long& rhs);
-	unsigned long long operator[](const unsigned long long& index) const;
-	unsigned long long& operator[](const unsigned long long& index);
+	BigInteger& operator=(const uint64_t& rhs);
+	uint64_t operator[](const uint64_t& index) const;
+	uint64_t& operator[](const uint64_t& index);
 
 	// Binary //
 	BigInteger operator+(const BigInteger& rhs) const;
-	BigInteger operator+(const unsigned long long& rhs) const;
+	BigInteger operator+(const uint64_t& rhs) const;
 	BigInteger operator-(const BigInteger& rhs) const;
-	BigInteger operator-(const unsigned long long& rhs) const;
+	BigInteger operator-(const uint64_t& rhs) const;
 	BigInteger operator*(const BigInteger& rhs) const;
-	BigInteger operator*(const unsigned long long& rhs) const;
+	BigInteger operator*(const uint64_t& rhs) const;
 	BigInteger operator/(const BigInteger& rhs) const;
-	BigInteger operator/(const unsigned long long& rhs) const;
+	BigInteger operator/(const uint64_t& rhs) const;
 	BigInteger operator%(const BigInteger& rhs) const;
-	BigInteger operator%(const unsigned long long& rhs) const;
+	BigInteger operator%(const uint64_t& rhs) const;
 
 	// Binary Assignment //
 	BigInteger& operator+=(const BigInteger& rhs);
-	BigInteger& operator+=(const unsigned long long& rhs);
+	BigInteger& operator+=(const uint64_t& rhs);
 	BigInteger& operator-=(const BigInteger& rhs);
-	BigInteger& operator-=(const unsigned long long& rhs);
+	BigInteger& operator-=(const uint64_t& rhs);
 	BigInteger& operator*=(const BigInteger& rhs);
-	BigInteger& operator*=(const unsigned long long& rhs);
+	BigInteger& operator*=(const uint64_t& rhs);
 	BigInteger& operator/=(const BigInteger& rhs);
-	BigInteger& operator/=(const unsigned long long& rhs);
+	BigInteger& operator/=(const uint64_t& rhs);
 	BigInteger& operator%=(const BigInteger& rhs);
-	BigInteger& operator%=(const unsigned long long& rhs);
+	BigInteger& operator%=(const uint64_t& rhs);
 
 	// Bitwise //
 	BigInteger operator~() const;
 	BigInteger operator&(const BigInteger& rhs) const;
-	BigInteger operator&(const unsigned long long& rhs) const;
+	BigInteger operator&(const uint64_t& rhs) const;
 	BigInteger operator^(const BigInteger& rhs) const;
-	BigInteger operator^(const unsigned long long& rhs) const;
+	BigInteger operator^(const uint64_t& rhs) const;
 	BigInteger operator|(const BigInteger& rhs) const;
-	BigInteger operator|(const unsigned long long& rhs) const;
-	BigInteger operator<<(const unsigned long long& shift) const;
-	BigInteger operator>>(const unsigned long long& shift) const;
+	BigInteger operator|(const uint64_t& rhs) const;
+	BigInteger operator<<(const uint64_t& shift) const;
+	BigInteger operator>>(const uint64_t& shift) const;
 
 	// Bitwise Assignment //
 	BigInteger& operator&=(const BigInteger& rhs);
-	BigInteger& operator&=(const unsigned long long& rhs);
+	BigInteger& operator&=(const uint64_t& rhs);
 	BigInteger& operator^=(const BigInteger& rhs);
-	BigInteger& operator^=(const unsigned long long& rhs);
+	BigInteger& operator^=(const uint64_t& rhs);
 	BigInteger& operator|=(const BigInteger& rhs);
-	BigInteger& operator|=(const unsigned long long& rhs);
-	BigInteger& operator<<=(const unsigned long long& shift);
-	BigInteger& operator>>=(const unsigned long long& shift);
+	BigInteger& operator|=(const uint64_t& rhs);
+	BigInteger& operator<<=(const uint64_t& shift);
+	BigInteger& operator>>=(const uint64_t& shift);
 
 
 	// Unary //
@@ -192,6 +195,6 @@ public:
 // Returns whether ((2^n) - 1) is a prime number
 // os is where it will print the number if it is prime
 // prints to std::cout the progress of it checking
-bool mersennePrime(const unsigned long long n, std::ostream& os);
+bool mersennePrime(const uint64_t n, std::ostream& os);
 
 #endif

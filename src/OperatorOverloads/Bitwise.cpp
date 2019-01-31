@@ -4,7 +4,7 @@
 
 BigInteger BigInteger::operator~() const {
 	BigInteger ret = BigInteger(*this);
-	unsigned long long index = this->size;
+	uint64_t index = this->size;
 	while(index--)
 		ret.digits[index] = ~(this->digits[index]);
 	return ret;
@@ -18,7 +18,7 @@ BigInteger BigInteger::operator&(const BigInteger& rhs) const {
 	return ret;
 }
 
-BigInteger BigInteger::operator&(const unsigned long long& rhs) const {
+BigInteger BigInteger::operator&(const uint64_t& rhs) const {
 	BigInteger ret = BigInteger(*this);
 	ret &= rhs;
 	return ret;
@@ -32,7 +32,7 @@ BigInteger BigInteger::operator^(const BigInteger& rhs) const {
 	return ret;
 }
 
-BigInteger BigInteger::operator^(const unsigned long long& rhs) const {
+BigInteger BigInteger::operator^(const uint64_t& rhs) const {
 	BigInteger ret = BigInteger(*this);
 	ret ^= rhs;
 	return ret;
@@ -46,7 +46,7 @@ BigInteger BigInteger::operator|(const BigInteger& rhs) const {
 	return ret;
 }
 
-BigInteger BigInteger::operator|(const unsigned long long& rhs) const {
+BigInteger BigInteger::operator|(const uint64_t& rhs) const {
 	BigInteger ret = BigInteger(*this);
 	ret |= rhs;
 	return ret;
@@ -54,13 +54,13 @@ BigInteger BigInteger::operator|(const unsigned long long& rhs) const {
 
 // SHIFTS
 
-BigInteger BigInteger::operator<<(const unsigned long long& shift) const {
+BigInteger BigInteger::operator<<(const uint64_t& shift) const {
 	BigInteger ret = BigInteger(*this);
 	ret <<= shift;
 	return ret;
 }
 
-BigInteger BigInteger::operator>>(const unsigned long long& shift) const {
+BigInteger BigInteger::operator>>(const uint64_t& shift) const {
 	BigInteger ret = BigInteger(*this);
 	ret >>= shift;
 	return ret;

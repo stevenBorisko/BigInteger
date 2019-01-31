@@ -5,7 +5,7 @@ bool BigInteger::operator==(const BigInteger& rhs) const {
 		//std::cout << "==: unequal sizes\n";
 		return false;
 	}
-	for(unsigned long long index = 0;index < this->size;++index) {
+	for(uint64_t index = 0;index < this->size;++index) {
 		if(this->digits[index] != rhs.digits[index]) {
 			return false;
 		}
@@ -39,7 +39,7 @@ bool BigInteger::operator<(const BigInteger& rhs) const {
 	if(this->N() != rhs.N())
 		return (this->N() & !(rhs.N()));
 
-	unsigned long long index = this->size;
+	uint64_t index = this->size;
 	while(index--)
 		if(this->digits[index] - rhs.digits[index])
 			return (this->digits[index] < rhs.digits[index]);
@@ -64,7 +64,7 @@ bool BigInteger::operator>(const BigInteger& rhs) const {
 	if(this->N() != rhs.N())
 		return (!(this->N()) & rhs.N());
 
-	unsigned long long index = this->size;
+	uint64_t index = this->size;
 	while(index--)
 		if(this->digits[index] - rhs.digits[index])
 			return (this->digits[index] > rhs.digits[index]);

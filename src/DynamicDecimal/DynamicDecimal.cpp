@@ -4,7 +4,7 @@
 
 // DecimalNode //
 
-DecimalNode::DecimalNode(unsigned long long newData) :
+DecimalNode::DecimalNode(uint64_t newData) :
 
 	data(newData),
 	left(nullptr),
@@ -12,7 +12,7 @@ DecimalNode::DecimalNode(unsigned long long newData) :
 
 	{
 
-	unsigned long long overflow = newData / base;
+	uint64_t overflow = newData / base;
 	if(overflow) {
 		left = new DecimalNode(overflow);
 		left->right = this;
@@ -21,9 +21,9 @@ DecimalNode::DecimalNode(unsigned long long newData) :
 
 }
 
-void DecimalNode::add(unsigned long long adder) {
+void DecimalNode::add(uint64_t adder) {
 	data += adder;
-	unsigned long long overflow = data / base;
+	uint64_t overflow = data / base;
 	if(overflow) {
 		if(left) {
 			left->add(overflow);
@@ -38,7 +38,7 @@ void DecimalNode::add(unsigned long long adder) {
 
 void DecimalNode::print(std::ostream& os) {
 	unsigned char zeros = 18;
-	unsigned long long dataCopy = this->data;
+	uint64_t dataCopy = this->data;
 
 	while(dataCopy) {
 		dataCopy /= 10;
@@ -55,7 +55,7 @@ void DynamicDecimal::updateLead() {
 	while(leadDigit->left) leadDigit = leadDigit->left;
 }
 
-DynamicDecimal::DynamicDecimal(unsigned long long initNum) :
+DynamicDecimal::DynamicDecimal(uint64_t initNum) :
 
 	onesDigit(nullptr),
 	leadDigit(nullptr)
@@ -78,7 +78,7 @@ DynamicDecimal::~DynamicDecimal() {
 
 void DynamicDecimal::multiplyByTwo() {
 	DecimalNode* currNode = onesDigit;
-	unsigned long long overflow = 0;
+	uint64_t overflow = 0;
 	while(currNode) {
 		currNode->data <<= 1;
 		currNode->data += overflow;

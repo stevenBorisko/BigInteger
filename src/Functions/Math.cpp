@@ -16,9 +16,9 @@ BigInteger sqrt(const BigInteger& num) {
 
 	BigInteger ret = BigInteger(num);
 
-	unsigned long long digitsIn = num.size - 1;
-	unsigned long long insideBits = 64;
-	unsigned long long mask = num.left;
+	uint64_t digitsIn = num.size - 1;
+	uint64_t insideBits = 64;
+	uint64_t mask = num.left;
 
 	while(!(mask & num.digits[digitsIn])) {
 		--insideBits;
@@ -44,7 +44,7 @@ BigInteger sqrt(const BigInteger& num) {
 
 	ret >>= insideBits;
 
-	for(unsigned long long i = num.size;i;--i) {
+	for(uint64_t i = num.size;i;--i) {
 		for(unsigned char j = 2;j;--j) {
 			temp = num;
 			temp /= ret;
@@ -88,7 +88,7 @@ BigInteger pow(const BigInteger& num, const BigInteger& exp) {
 	return acc;
 }
 
-BigInteger pow(const BigInteger& num, const unsigned long long& exp) {
+BigInteger pow(const BigInteger& num, const uint64_t& exp) {
 	return pow(num, BigInteger(exp,1));
 }
 
@@ -138,8 +138,8 @@ BigInteger log(const BigInteger& num) {
 	BigInteger ret = BigInteger(num.size);
 	BigInteger counter = BigInteger(num.size);
 
-	unsigned long long index = 0;
-	unsigned long long mask = 1;
+	uint64_t index = 0;
+	uint64_t mask = 1;
 
 	do {
 		for(mask = 1; mask; mask <<= 1) {

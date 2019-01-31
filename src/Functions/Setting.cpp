@@ -1,13 +1,13 @@
 #include "../../BigInteger.hpp"
 
 void BigInteger::zero() {
-	unsigned long long index = size;
+	uint64_t index = size;
 	while(index) digits[--index] = 0;
 }
 
 void BigInteger::rand() {
-	unsigned long long index = size;
-	unsigned long long temp = 0;
+	uint64_t index = size;
+	uint64_t temp = 0;
 
 	std::random_device rd;
 	std::mt19937 gen(rd());
@@ -24,15 +24,15 @@ void BigInteger::rand() {
 }
 
 void BigInteger::neg() {
-	unsigned long long index = size;
+	uint64_t index = size;
 	while(index--) this->digits[index] = ~(this->digits[index]);
 	++(*this);
 }
 
-void BigInteger::resize(unsigned long long newSize) {
+void BigInteger::resize(uint64_t newSize) {
 	if(newSize == size) return;
-	unsigned long long* newArray = new unsigned long long[newSize];
-	unsigned long long index = 0;
+	uint64_t* newArray = new uint64_t[newSize];
+	uint64_t index = 0;
 	while((index < newSize) & (index < size)) {
 		newArray[index] = digits[index];
 		++index;

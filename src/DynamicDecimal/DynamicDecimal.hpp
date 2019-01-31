@@ -5,15 +5,15 @@ These structs are solely for converting a binary number to decimal
 struct DecimalNode {
 
 private:
-	const unsigned long long base = 1000000000000000000ULL;
+	const uint64_t base = 1000000000000000000ULL;
 
 public:
-	unsigned long long data;
+	uint64_t data;
 	DecimalNode* left;
 	DecimalNode* right;
 
-	DecimalNode(unsigned long long newData);
-	void add(unsigned long long adder);
+	DecimalNode(uint64_t newData);
+	void add(uint64_t adder);
 	void print(std::ostream& os);
 
 };
@@ -21,7 +21,7 @@ public:
 struct DynamicDecimal {
 
 private:
-	const unsigned long long base = 1000000000000000000ULL;
+	const uint64_t base = 1000000000000000000ULL;
 	DecimalNode* onesDigit;
 	DecimalNode* leadDigit;
 
@@ -29,7 +29,7 @@ private:
 
 public:
 
-	DynamicDecimal(unsigned long long initNum);
+	DynamicDecimal(uint64_t initNum);
 	~DynamicDecimal();
 
 	void multiplyByTwo();

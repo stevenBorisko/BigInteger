@@ -13,8 +13,8 @@ BigInteger& BigInteger::operator+=(const BigInteger& rhs) {
 		return *this;
 	}
 
-	unsigned long long index = 0;
-	unsigned long long originalDigit = 0;
+	uint64_t index = 0;
+	uint64_t originalDigit = 0;
 	unsigned char overflow = 0;
 	do {
 		originalDigit = this->digits[index];
@@ -29,10 +29,10 @@ BigInteger& BigInteger::operator+=(const BigInteger& rhs) {
 	return *this;
 }
 
-BigInteger& BigInteger::operator+=(const unsigned long long& rhs) {
-	unsigned long long index = 0;
-	unsigned long long originalDigit = 0;
-	unsigned long long overflow = rhs;
+BigInteger& BigInteger::operator+=(const uint64_t& rhs) {
+	uint64_t index = 0;
+	uint64_t originalDigit = 0;
+	uint64_t overflow = rhs;
 	do {
 		originalDigit = this->digits[index];
 		this->digits[index] += overflow;
@@ -53,7 +53,7 @@ BigInteger& BigInteger::operator-=(const BigInteger& rhs) {
 	return *this;
 }
 
-BigInteger& BigInteger::operator-=(const unsigned long long& rhs) {
+BigInteger& BigInteger::operator-=(const uint64_t& rhs) {
 
 	this->neg();
 	*this += rhs;
@@ -83,8 +83,8 @@ BigInteger& BigInteger::operator*=(const BigInteger& rhs) {
 
 	BigInteger acc = BigInteger(this->size);
 
-	for(unsigned long long i = this->size;i;--i) {
-		for(unsigned long long j = 64;j;--j) {
+	for(uint64_t i = this->size;i;--i) {
+		for(uint64_t j = 64;j;--j) {
 
 			if(this->digits[0] & 1) acc += rhs;
 			*this >>= 1;
@@ -97,11 +97,11 @@ BigInteger& BigInteger::operator*=(const BigInteger& rhs) {
 	return *this;
 }
 
-BigInteger& BigInteger::operator*=(const unsigned long long& rhs) {
+BigInteger& BigInteger::operator*=(const uint64_t& rhs) {
 
-	unsigned long long acc = 0;
-	for(unsigned long long i = this->size;i;--i) {
-		for(unsigned long long j = 64;j;--j) {
+	uint64_t acc = 0;
+	for(uint64_t i = this->size;i;--i) {
+		for(uint64_t j = 64;j;--j) {
 
 			if(this->digits[0] & 1) acc += rhs;
 			*this >>= 1;
@@ -152,8 +152,8 @@ BigInteger& BigInteger::operator/=(const BigInteger& rhs) {
 	negSor.neg();
 
 	bool negative = false;
-	for(unsigned long long i = this->size;i;--i) {
-		for(unsigned long long j = 64;j;--j) {
+	for(uint64_t i = this->size;i;--i) {
+		for(uint64_t j = 64;j;--j) {
 
 			negative = acc.N();
 			acc <<= 1;
@@ -170,7 +170,7 @@ BigInteger& BigInteger::operator/=(const BigInteger& rhs) {
 	return *this;
 }
 
-BigInteger& BigInteger::operator/=(const unsigned long long& rhs) {
+BigInteger& BigInteger::operator/=(const uint64_t& rhs) {
 
 	if(rhs == 0) {
 		this->zero();
@@ -181,12 +181,12 @@ BigInteger& BigInteger::operator/=(const unsigned long long& rhs) {
 	bool negAns = this->N();
 	if(negAns) this->neg();
 
-	unsigned long long acc = 0;
-	unsigned long long negRHS = ~rhs;
+	uint64_t acc = 0;
+	uint64_t negRHS = ~rhs;
 	++negRHS;
 	bool negative = false;
-	for(unsigned long long i = this->size;i;--i) {
-		for(unsigned long long j = 64;j;--j) {
+	for(uint64_t i = this->size;i;--i) {
+		for(uint64_t j = 64;j;--j) {
 
 			negative = (acc & left);
 			acc <<= 1;
@@ -239,8 +239,8 @@ BigInteger& BigInteger::operator%=(const BigInteger& rhs) {
 	negSor.neg();
 
 	bool negative = false;
-	for(unsigned long long i = this->size;i;--i) {
-		for(unsigned long long j = 64;j;--j) {
+	for(uint64_t i = this->size;i;--i) {
+		for(uint64_t j = 64;j;--j) {
 
 			negative = acc.N();
 			acc <<= 1;
@@ -259,17 +259,17 @@ BigInteger& BigInteger::operator%=(const BigInteger& rhs) {
 	return *this;
 }
 
-BigInteger& BigInteger::operator%=(const unsigned long long& rhs) {
+BigInteger& BigInteger::operator%=(const uint64_t& rhs) {
 
 	if(this->N()) this->neg();
 	if(this->Z()) return *this;
 
-	unsigned long long acc = 0;
-	unsigned long long negRHS = ~rhs;
+	uint64_t acc = 0;
+	uint64_t negRHS = ~rhs;
 	++negRHS;
 	bool negative = false;
-	for(unsigned long long i = this->size;i;--i) {
-		for(unsigned long long j = 64;j;--j) {
+	for(uint64_t i = this->size;i;--i) {
+		for(uint64_t j = 64;j;--j) {
 
 			negative = (acc & left);
 			acc <<= 1;

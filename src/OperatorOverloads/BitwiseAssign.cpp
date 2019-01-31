@@ -7,14 +7,14 @@ BigInteger& BigInteger::operator&=(const BigInteger& rhs) {
 		//std::cout << "&=: unequal sizes\n";
 		return *this;
 	}
-	unsigned long long index = this->size;
+	uint64_t index = this->size;
 	while(index--)
 		this->digits[index] &= rhs.digits[index];
 	return *this;
 }
 
-BigInteger& BigInteger::operator&=(const unsigned long long& rhs) {
-	unsigned long long index = this->size;
+BigInteger& BigInteger::operator&=(const uint64_t& rhs) {
+	uint64_t index = this->size;
 	while(--index) this->digits[index] = 0;
 	this->digits[0] &= rhs;
 	return *this;
@@ -27,13 +27,13 @@ BigInteger& BigInteger::operator^=(const BigInteger& rhs) {
 		//std::cout << "^=: unequal sizes\n";
 		return *this;
 	}
-	unsigned long long index = this->size;
+	uint64_t index = this->size;
 	while(index--)
 		this->digits[index] ^= rhs.digits[index];
 	return *this;
 }
 
-BigInteger& BigInteger::operator^=(const unsigned long long& rhs) {
+BigInteger& BigInteger::operator^=(const uint64_t& rhs) {
 	this->digits[0] ^= rhs;
 	return *this;
 }
@@ -45,21 +45,21 @@ BigInteger& BigInteger::operator|=(const BigInteger& rhs) {
 		//std::cout << "|=: unequal sizes\n";
 		return *this;
 	}
-	unsigned long long index = this->size;
+	uint64_t index = this->size;
 	while(index--)
 		this->digits[index] |= rhs.digits[index];
 	return *this;
 }
 
-BigInteger& BigInteger::operator|=(const unsigned long long& rhs) {
+BigInteger& BigInteger::operator|=(const uint64_t& rhs) {
 	this->digits[0] |= rhs;
 	return *this;
 }
 
 // SHIFTS
 
-BigInteger& BigInteger::operator<<=(const unsigned long long& shift) {
-	unsigned long long completeShifts = shift >> 6;
+BigInteger& BigInteger::operator<<=(const uint64_t& shift) {
+	uint64_t completeShifts = shift >> 6;
 
 	// if shift > 64
 	if(completeShifts) {
@@ -68,7 +68,7 @@ BigInteger& BigInteger::operator<<=(const unsigned long long& shift) {
 			return *this;
 		}
 		else {
-			unsigned long long index = this->size;
+			uint64_t index = this->size;
 			while(index-- - completeShifts) {
 				this->digits[index] = this->digits[index - completeShifts];
 			}
@@ -79,11 +79,11 @@ BigInteger& BigInteger::operator<<=(const unsigned long long& shift) {
 		}
 	}
 
-	unsigned long long insideShifts = 0b111111;
+	uint64_t insideShifts = 0b111111;
 	insideShifts &= shift;
 
-	unsigned long long digitsToShift = 64 - insideShifts;
-	unsigned long long overflowMask = 0;
+	uint64_t digitsToShift = 64 - insideShifts;
+	uint64_t overflowMask = 0;
 	if(insideShifts) {
 		overflowMask = full;
 		overflowMask >>= digitsToShift;
@@ -93,9 +93,9 @@ BigInteger& BigInteger::operator<<=(const unsigned long long& shift) {
 		return *this;
 	}
 
-	unsigned long long index = 0;
-	unsigned long long overflow = 0;
-	unsigned long long pastOverflow = 0;
+	uint64_t index = 0;
+	uint64_t overflow = 0;
+	uint64_t pastOverflow = 0;
 
 	while(index < this->size) {
 		pastOverflow = overflowMask & this->digits[index];
@@ -108,8 +108,8 @@ BigInteger& BigInteger::operator<<=(const unsigned long long& shift) {
 	return *this;
 }
 
-BigInteger& BigInteger::operator>>=(const unsigned long long& shift) {
-	unsigned long long completeShifts = shift >> 6;
+BigInteger& BigInteger::operator>>=(const uint64_t& shift) {
+	uint64_t completeShifts = shift >> 6;
 
 	// if shift > 64
 	if(completeShifts) {
@@ -118,7 +118,7 @@ BigInteger& BigInteger::operator>>=(const unsigned long long& shift) {
 			return *this;
 		}
 		else {
-			unsigned long long index = 0;
+			uint64_t index = 0;
 			while(index < this->size - completeShifts) {
 				this->digits[index] = this->digits[index + completeShifts];
 				++index;
@@ -131,11 +131,11 @@ BigInteger& BigInteger::operator>>=(const unsigned long long& shift) {
 		}
 	}
 
-	unsigned long long insideShifts = 0b111111;
+	uint64_t insideShifts = 0b111111;
 	insideShifts &= shift;
 
-	unsigned long long digitsToShift = 64 - insideShifts;
-	unsigned long long overflowMask = 0;
+	uint64_t digitsToShift = 64 - insideShifts;
+	uint64_t overflowMask = 0;
 	if(insideShifts) {
 		overflowMask = full;
 		overflowMask <<= digitsToShift;
@@ -145,9 +145,9 @@ BigInteger& BigInteger::operator>>=(const unsigned long long& shift) {
 		return *this;
 	}
 
-	unsigned long long index = this->size;
-	unsigned long long overflow = 0;
-	unsigned long long pastOverflow = 0;
+	uint64_t index = this->size;
+	uint64_t overflow = 0;
+	uint64_t pastOverflow = 0;
 
 	while(index--) {
 		pastOverflow = overflowMask & this->digits[index];

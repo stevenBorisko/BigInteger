@@ -1,8 +1,8 @@
 #include "../../BigInteger.hpp"
 
-bool mersennePrime(const unsigned long long n, std::ostream& os) {
+bool mersennePrime(const uint64_t n, std::ostream& os) {
 
-	unsigned long long size = (n / 32) + 1;
+	uint64_t size = (n / 32) + 1;
 
 	BigInteger mer = BigInteger(1,size);
 	mer <<= n;
@@ -11,13 +11,13 @@ bool mersennePrime(const unsigned long long n, std::ostream& os) {
 	std::cout << "creating sequence element\n";
 	BigInteger seq = BigInteger(4,size);
 
-	unsigned long long every = 100;
-	unsigned long long nm2 = n - 2;
+	uint64_t every = 100;
+	uint64_t nm2 = n - 2;
 
 	BigInteger temp = BigInteger(size);
 	BigInteger high = BigInteger(size);
-	unsigned long long iover = nm2 / every;
-	for(unsigned long long j = nm2;j;--j) {
+	uint64_t iover = nm2 / every;
+	for(uint64_t j = nm2;j;--j) {
 		if(j % every == 0) {
 			std::cout << "\r\t"  << ((nm2 - j + 1)/every) + 1;
 			std::cout << "/" << iover << std::flush;

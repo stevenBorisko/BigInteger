@@ -1,7 +1,7 @@
 #include "../BigInteger.hpp"
 
 bool BigInteger::Z() const {
-	unsigned long long index = size;
+	uint64_t index = size;
 	while(index) if(digits[--index]) return false;
 	return true;
 }
