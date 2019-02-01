@@ -1,16 +1,22 @@
 #include "../../BigInteger.hpp"
 
 BigInteger abs(const BigInteger& num) {
-	return (num.N() ? -(num) : BigInteger(num));
+	return (num.N() ? -num : num);
 }
 
 BigInteger sqrt(const BigInteger& num) {
-	if(num.Z()) return num;
+
+	// Error handling
 	if(num.N()) {
-		//std::cout << "sqrt: negative radicand\n";
-		return num;
+		std::cerr << "sqrt(const BigInteger&): negative input\n";
+		std::cerr << "\tcomplex numbers have not been implemented\n";
+		exit(1);
 	}
 
+	// Easy sauce
+	if(num.Z()) return num;
+
+	// Now actually calculate
 	BigInteger temp = BigInteger(1,num.size);
 	if(num == temp) return temp;
 
@@ -60,23 +66,22 @@ BigInteger sqrt(const BigInteger& num) {
 
 BigInteger pow(const BigInteger& num, const BigInteger& exp) {
 	BigInteger acc = BigInteger(1,num.size);
+	bool numZ = num.Z();
+	bool expZ = exp.Z();
 
-	bool thisZ = num.Z();
-	bool expZ = num.Z();
-	if(thisZ & expZ) {
-		//std::cout << "pow: 0 ^ 0\n";
-		return acc;
+	// Error handling
+	if(numZ & expZ) {
+		std::cerr << "pow(const BigInteger&, const BigInteger&): (0,0) input\n";
+		exit(1);
 	}
 
+	// Easy sauce
+	if(numZ) return num;
 	if(expZ) return acc;
-	if(thisZ) {
-		acc.digits[0] = 0;
-		return acc;
-	}
 
-
-	BigInteger expCopy = BigInteger(exp);
+	// Now actually calculate
 	BigInteger numCopy = BigInteger(num);
+	BigInteger expCopy = BigInteger(exp);
 	while(!expCopy.Z()) {
 		while(!expCopy.O()) {
 			numCopy *= numCopy;
@@ -89,19 +94,47 @@ BigInteger pow(const BigInteger& num, const BigInteger& exp) {
 }
 
 BigInteger pow(const BigInteger& num, const uint64_t& exp) {
-	return pow(num, BigInteger(exp,1));
+	BigInteger acc = BigInteger(1,num.size);
+	bool numZ = num.Z();
+	bool expZ = !exp;
+
+	// Error handling
+	if(numZ & expZ) {
+		std::cerr << "pow(const BigInteger&, const uint64_t&): (0,0) input\n";
+		exit(1);
+	}
+
+	// Easy sauce
+	if(numZ) return num;
+	if(expZ) return acc;
+
+	// Now actually calculate
+	BigInteger numCopy = BigInteger(num);
+	uint64_t expCopy = exp;
+	while(expCopy) {
+		while(!(expCopy & 1)) {
+			numCopy *= numCopy;
+			expCopy >>= 1;
+		}
+		acc *= numCopy;
+		--expCopy;
+	}
+	return acc;
 }
 
 BigInteger fact(const BigInteger& num) {
 	BigInteger ret = BigInteger(1,num.size);
+
+	// Error handling
 	if(num.N()) {
-		//std::cout << "fact: negative number\n";
-		return ret;
+		std::cerr << "fact(const BigInteger&): negative input\n";
+		exit(1);
 	}
+
+	// Easy sauce
 	if(num.Z() || num == ret) return ret;
 
 	BigInteger copy = BigInteger(num);
-
 	do {
 		ret *= copy;
 		--copy;
@@ -137,6 +170,16 @@ BigInteger log(const BigInteger& num) {
 
 	BigInteger ret = BigInteger(num.size);
 	BigInteger counter = BigInteger(num.size);
+
+	// Error handling
+	if(num.N()) {
+		std::cerr << "log(const BigInteger&): negative input\n";
+		exit(1);
+	}
+	if(num.Z()) {
+		std::cerr << "log(const BigInteger&): zero input\n";
+		exit(1);
+	}
 
 	uint64_t index = 0;
 	uint64_t mask = 1;

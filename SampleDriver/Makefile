@@ -7,9 +7,13 @@ SAMPLE_CFLAGS := -std=c++11 -O3
 SAMPLE_LFLAGS :=
 
 EXEC := execute.out
+
 compile: $(EXEC)
 	@echo "- - - - Project compiled - - - -"
 	@echo "Executable: $(EXEC)"
+
+test: compile
+	./$(EXEC)
 
 SAMPLE_PATH := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
 

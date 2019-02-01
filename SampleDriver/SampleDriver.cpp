@@ -4,7 +4,29 @@
 
 using namespace std;
 
+//----------------------------------------------------------------------------//
+// Test Function Declarations
+//----------------------------------------------------------------------------//
+
+void fib();
+void power();
+
+//----------------------------------------------------------------------------//
+// Main
+//----------------------------------------------------------------------------//
+
 int main(int argc, char* argv[]) {
+
+	fib();
+
+	return 0;
+}
+
+//----------------------------------------------------------------------------//
+// Test function implementation
+//----------------------------------------------------------------------------//
+
+void fib() {
 
 	// calculate the millionth fibonacci number //
 	// should take about 90s
@@ -24,6 +46,10 @@ int main(int argc, char* argv[]) {
 
 	cout << "generating decimal...\n";
 	cout << num1 << "\n";
+}
 
-	return 0;
+void power() {
+	BigInteger num = BigInteger(10,10);
+	for(uint64_t i = 0; i < 100;++i)
+		cout << i << ":\t" << pow(num,i) << "\n";
 }

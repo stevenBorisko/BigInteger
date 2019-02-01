@@ -77,6 +77,8 @@ void BigInteger::decPrint(std::ostream& os) const {
 	uint64_t index = thisCopy.size - 1;
 	uint64_t currDigit = thisCopy.digits[index];
 
+	// Most significant digit gets treated separately since the sign bit needs
+	// to be left uncounted
 	mask >>= 1;
 	while(mask) {
 		acc.multiplyByTwo();

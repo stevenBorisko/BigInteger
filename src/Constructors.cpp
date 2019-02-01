@@ -13,13 +13,12 @@ BigInteger::BigInteger(
 ) :
 	BigInteger(newSize)
 {
-	digits = new uint64_t[newSize];
-	digits[0] = initNum;
+	this->digits[0] = initNum;
 }
 
 BigInteger::BigInteger(const BigInteger& rhs) :
 	size(rhs.size),
-	digits(new uint64_t[rhs.size])
+	digits(new uint64_t[this->size])
 {
 	memcpy(this->digits, rhs.digits, this->size << 3);
 }

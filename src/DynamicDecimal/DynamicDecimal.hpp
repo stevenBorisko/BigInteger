@@ -26,6 +26,7 @@ private:
 	DecimalNode* leadDigit;
 
 	void updateLead();
+	void updateLead(DecimalNode* newLead);
 
 public:
 
