@@ -46,29 +46,6 @@ std::string BigInteger::binDigit(const uint64_t digit) const {
 	return retString;
 }
 
-void BigInteger::binDump(const std::string filename) const {
-	const char* name = filename.c_str();
-	std::ofstream file;
-	file.open(name);
-	uint64_t charMask = 0;
-	uint64_t index = this->size;
-	uint64_t temp = 0;
-	char printer = '\0';
-	while(index--) {
-		charMask = 0xFF;
-		charMask <<= 56;
-		
-		for(unsigned char i = 64;i;i-=8) {
-			temp = digits[index] & charMask;
-			temp >>= i - 8;
-			printer = (char)temp;
-			charMask >>= 8;
-			file << printer;
-		}
-	}
-	file.close();
-}
-
 void BigInteger::decPrint(std::ostream& os) const {
 	BigInteger thisCopy = BigInteger(*this);
 	if(thisCopy.N()) thisCopy.neg();
@@ -98,4 +75,45 @@ void BigInteger::decPrint(std::ostream& os) const {
 
 	if(this->N()) os << "-";
 	acc.print(os);
+}
+
+void binDump(const BigInteger& num, std::ostream& os) {
+	void* voidArr = static_cast<void*>(num.digits);
+	char* charArr = static_cast<char*>(voidArr);
+
+	os << num.size << "\n";
+
+	for(uint64_t index = 0; index < (num.size << 3); ++index)
+		os << *(charArr++);
+}
+
+void binScoop(BigInteger& num, std::istream& is) {
+	uint64_t dCount;
+	std::string dCountStr;
+	void* voidArr;
+	char* charArr;
+
+	// get digit count
+	is >> dCountStr;
+	uint64_t i = 0;
+	for(
+		i = 0;
+		i < dCountStr.length() && (dCountStr[i] < '0' || '9' < dCountStr[i]);
+		++i
+	);
+	dCount = static_cast<uint64_t>(
+		stoi(dCountStr.substr(i, dCountStr.length() - i))
+	);
+
+	num = BigInteger(dCount);
+
+	voidArr = static_cast<void*>(num.digits);
+	charArr = static_cast<char*>(voidArr);
+
+	// Skip the first character since it's just the space
+	// between the digit count and the actual number
+	is >> std::noskipws >> *(charArr);
+
+	for(uint64_t index = 0; index < (num.size << 3); ++index)
+		is >> std::noskipws >> *(charArr++);
 }

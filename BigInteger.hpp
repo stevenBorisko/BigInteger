@@ -62,10 +62,15 @@ public:
 	void hexPrint(std::ostream& os) const;
 	// prints, starting at the first non-zero digit, the number in binary
 	void binPrint(std::ostream& os) const;
-	// prints actual binary of number to file 'filename'
-	void binDump(const std::string filename) const;
 	// prints entire number in decimal
 	void decPrint(std::ostream& os) const;
+	// prints binary form of a number to an ostream
+	// to be read by `binScoop`
+	friend void binDump(const BigInteger& num, std::ostream& os);
+	// reads binary form of a number to an ostream into num
+	// written by `binDump`
+	// num will be resized to whatever length it reads
+	friend void binScoop(BigInteger& num, std::istream& is);
 
 	// Math Functions //
 
