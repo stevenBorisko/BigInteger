@@ -49,9 +49,12 @@ public:
 	// Constructors //
 
 	// creates a number of '_size' digits set to zero
-	BigInteger(uint64_t _size);
+	BigInteger(const uint64_t& _size);
 	// creates a number of '_size' digits set to 'val'
-	BigInteger(uint64_t _size, uint64_t val);
+	BigInteger(const uint64_t& _size, const uint64_t& val);
+	// creates a number from a string.
+	// For negative numbers, just start with a hyphen
+	BigInteger(const uint64_t& _size, const std::string& num);
 	// deep copy of rhs
 	BigInteger(const BigInteger& rhs);
 	~BigInteger();
