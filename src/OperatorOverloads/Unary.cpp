@@ -1,7 +1,7 @@
 #include "../../BigInteger.hpp"
 
 BigInteger BigInteger::operator!() const {
-	BigInteger ret = BigInteger(!this->Z(),this->size);
+	BigInteger ret = BigInteger(this->size,!this->Z());
 	return ret;
 }
 BigInteger BigInteger::operator-() const {

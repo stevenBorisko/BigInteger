@@ -4,12 +4,12 @@ bool mersennePrime(const uint64_t n, std::ostream& os) {
 
 	uint64_t size = (n / 32) + 1;
 
-	BigInteger mer = BigInteger(1,size);
+	BigInteger mer = BigInteger(size,1);
 	mer <<= n;
 	--mer;
 
 	std::cout << "creating sequence element\n";
-	BigInteger seq = BigInteger(4,size);
+	BigInteger seq = BigInteger(size,4);
 
 	uint64_t every = 100;
 	uint64_t nm2 = n - 2;

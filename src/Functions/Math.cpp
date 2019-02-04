@@ -17,7 +17,7 @@ BigInteger sqrt(const BigInteger& num) {
 	if(num.Z()) return num;
 
 	// Now actually calculate
-	BigInteger temp = BigInteger(1,num.size);
+	BigInteger temp = BigInteger(num.size,1);
 	if(num == temp) return temp;
 
 	BigInteger ret = BigInteger(num);
@@ -65,7 +65,7 @@ BigInteger sqrt(const BigInteger& num) {
 }
 
 BigInteger pow(const BigInteger& num, const BigInteger& exp) {
-	BigInteger acc = BigInteger(1,num.size);
+	BigInteger acc = BigInteger(num.size,1);
 	bool numZ = num.Z();
 	bool expZ = exp.Z();
 
@@ -94,7 +94,7 @@ BigInteger pow(const BigInteger& num, const BigInteger& exp) {
 }
 
 BigInteger pow(const BigInteger& num, const uint64_t& exp) {
-	BigInteger acc = BigInteger(1,num.size);
+	BigInteger acc = BigInteger(num.size,1);
 	bool numZ = num.Z();
 	bool expZ = !exp;
 
@@ -123,7 +123,7 @@ BigInteger pow(const BigInteger& num, const uint64_t& exp) {
 }
 
 BigInteger fact(const BigInteger& num) {
-	BigInteger ret = BigInteger(1,num.size);
+	BigInteger ret = BigInteger(num.size,1);
 
 	// Error handling
 	if(num.N()) {
@@ -148,7 +148,7 @@ bool divisible(const BigInteger& num1, const BigInteger& num2) {
 }
 
 BigInteger gcd(const BigInteger& num1, const BigInteger& num2) {
-	BigInteger mod = BigInteger(1,num1.size);
+	BigInteger mod = BigInteger(num1.size,1);
 	BigInteger a = BigInteger(num1);
 	BigInteger b = BigInteger(num2);
 
