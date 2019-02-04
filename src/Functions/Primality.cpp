@@ -1,6 +1,9 @@
 #include "../../BigInteger.hpp"
 
-bool mersennePrime(const uint64_t n, std::ostream& os) {
+BigInteger mersennePrime(
+	const uint64_t n,
+	std::ostream& progress
+) {
 
 	uint64_t size = (n / 32) + 1;
 
@@ -8,7 +11,7 @@ bool mersennePrime(const uint64_t n, std::ostream& os) {
 	mer <<= n;
 	--mer;
 
-	std::cout << "creating sequence element\n";
+	progress << "((2 ^ " << n << ") - 1) primality check\n";
 	BigInteger seq = BigInteger(size,4);
 
 	uint64_t every = 100;
@@ -19,8 +22,8 @@ bool mersennePrime(const uint64_t n, std::ostream& os) {
 	uint64_t iover = nm2 / every;
 	for(uint64_t j = nm2;j;--j) {
 		if(j % every == 0) {
-			std::cout << "\r\t"  << ((nm2 - j + 1)/every) + 1;
-			std::cout << "/" << iover << std::flush;
+			progress << "\r\t"  << ((nm2 - j + 1)/every) + 1;
+			progress << "/" << iover << std::flush;
 		}
 		temp = seq;
 		seq *= temp;
@@ -33,10 +36,7 @@ bool mersennePrime(const uint64_t n, std::ostream& os) {
 		} while(seq > mer);
 	}
 
-	std::cout << "\tdone.\n";
-
 	bool isPrime = seq.Z() || (seq == mer);
-	if(isPrime) os << mer;
-
-	return isPrime;
+	progress << (isPrime ? " " : " not ") << "prime\n";
+	return isPrime ? mer : BigInteger(1);
 }

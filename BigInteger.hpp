@@ -197,9 +197,12 @@ public:
 };
 
 // Mersenne Prime Test: located in Functions/Primality.cpp
-// Returns whether ((2^n) - 1) is a prime number
-// os is where it will print the number if it is prime
-// prints to std::cout the progress of it checking
-bool mersennePrime(const uint64_t n, std::ostream& os);
+// If ((2 ^ `n`) - 1) is a prime number, then return the prime number
+// Else return zero
+// prints to `progress` the progress of it checking
+BigInteger mersennePrime(
+	const uint64_t n,
+	std::ostream& progress
+);
 
 #endif

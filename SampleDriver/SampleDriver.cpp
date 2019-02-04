@@ -59,5 +59,7 @@ void power() {
 void prime() {
 	// Checks for primality and prints if prime
 	// Should take about 15s
-	bool isPrime = mersennePrime(4423,std::cout);
+	BigInteger prime = mersennePrime(4423,std::cout);
+	if(prime.Z()) std::cout << "Not a prime\n";
+	else std::cout << prime << "\n";
 }

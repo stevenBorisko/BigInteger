@@ -13,7 +13,7 @@ compile: $(EXEC)
 	@echo "Executable: $(EXEC)"
 
 test: compile
-	./$(EXEC)
+	time ./$(EXEC)
 
 SAMPLE_PATH := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
 
