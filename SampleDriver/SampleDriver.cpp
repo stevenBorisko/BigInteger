@@ -10,6 +10,7 @@ using namespace std;
 
 void fib();
 void power();
+void prime();
 
 //----------------------------------------------------------------------------//
 // Main
@@ -17,7 +18,7 @@ void power();
 
 int main(int argc, char* argv[]) {
 
-	fib();
+	prime();
 
 	return 0;
 }
@@ -49,7 +50,14 @@ void fib() {
 }
 
 void power() {
+	// prints a bunch of powers of ten
 	BigInteger num = BigInteger(10,10);
 	for(uint64_t i = 0; i < 100;++i)
 		cout << i << ":\t" << pow(num,i) << "\n";
+}
+
+void prime() {
+	// Checks for primality and prints if prime
+	// Should take about 15s
+	bool isPrime = mersennePrime(4423,std::cout);
 }
