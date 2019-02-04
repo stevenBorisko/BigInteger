@@ -31,9 +31,9 @@ void fib() {
 	// calculate the millionth fibonacci number //
 	// should take about 90s
 
-	BigInteger num1 = BigInteger(0,11000);
-	BigInteger num2 = BigInteger(1,11000);
-	BigInteger num3 = BigInteger(0,11000);
+	BigInteger num1 = BigInteger(11000,0);
+	BigInteger num2 = BigInteger(11000,1);
+	BigInteger num3 = BigInteger(11000,0);
 
 	cout << "calculating...\n";
 	for(unsigned long long i = 2;i <= 1000000;++i) {

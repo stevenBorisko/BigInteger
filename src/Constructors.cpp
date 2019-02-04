@@ -1,19 +1,19 @@
 #include "../BigInteger.hpp"
 
-BigInteger::BigInteger(uint64_t newSize) :
-	size(newSize),
-	digits(new uint64_t[newSize])
+BigInteger::BigInteger(uint64_t _size) :
+	size(_size),
+	digits(new uint64_t[_size])
 {
 	memset(this->digits, '\0', this->size << 3);
 }
 
 BigInteger::BigInteger(
-	uint64_t initNum,
-	uint64_t newSize
+	uint64_t _size,
+	uint64_t val
 ) :
-	BigInteger(newSize)
+	BigInteger(_size)
 {
-	this->digits[0] = initNum;
+	this->digits[0] = val;
 }
 
 BigInteger::BigInteger(const BigInteger& rhs) :

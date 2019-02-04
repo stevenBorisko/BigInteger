@@ -48,10 +48,10 @@ public:
 
 	// Constructors //
 
-	// creates a number of 'newSize' digits set to zero
-	BigInteger(uint64_t newSize);
-	// creates a number of 'newSize' digits set to 'initNum'
-	BigInteger(uint64_t initNum, uint64_t newSize);
+	// creates a number of '_size' digits set to zero
+	BigInteger(uint64_t _size);
+	// creates a number of '_size' digits set to 'val'
+	BigInteger(uint64_t _size, uint64_t val);
 	// deep copy of rhs
 	BigInteger(const BigInteger& rhs);
 	~BigInteger();
