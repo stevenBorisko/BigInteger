@@ -51,17 +51,8 @@ void BigInteger::decPrint(std::ostream& os) const {
 	if(thisCopy.N()) thisCopy.neg();
 	DynamicDecimal acc = DynamicDecimal(0);
 	uint64_t mask = left;
-	uint64_t index = thisCopy.size - 1;
+	uint64_t index = thisCopy.size;
 	uint64_t currDigit = thisCopy.digits[index];
-
-	// Most significant digit gets treated separately since the sign bit needs
-	// to be left uncounted
-	mask >>= 1;
-	while(mask) {
-		acc.multiplyByTwo();
-		if(mask & currDigit) acc.addOne();
-		mask >>= 1;
-	}
 
 	while(index--) {
 		currDigit = thisCopy.digits[index];

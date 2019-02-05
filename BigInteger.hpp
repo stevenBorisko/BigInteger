@@ -42,6 +42,7 @@ private:
 	// helper function
 
 	// retrieves, in string form, digits at index 'digit'
+	// found in src/Functions/Printing.cpp
 	std::string binDigit(const uint64_t digit) const;
 
 public:
@@ -199,7 +200,7 @@ public:
 
 };
 
-// Mersenne Prime Test: located in Functions/Primality.cpp
+// Mersenne Prime Test: located in src/Functions/Primality.cpp
 // If ((2 ^ `n`) - 1) is a prime number, then return the prime number
 // Else return zero
 // prints to `progress` the progress of it checking
