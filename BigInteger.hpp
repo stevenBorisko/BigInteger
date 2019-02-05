@@ -103,6 +103,8 @@ public:
 	void rand();
 	// negate the number
 	void neg();
+	// flip all the bits
+	void flip();
 	// Resizes the number to 'newSize' digits
 	// if digits < size
 		// the most significant digits will be cut off

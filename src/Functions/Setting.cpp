@@ -24,9 +24,13 @@ void BigInteger::rand() {
 }
 
 void BigInteger::neg() {
+	this->flip();
+	++(*this);
+}
+
+void BigInteger::flip() {
 	uint64_t index = size;
 	while(index--) this->digits[index] = ~(this->digits[index]);
-	++(*this);
 }
 
 void BigInteger::resize(uint64_t newSize) {
