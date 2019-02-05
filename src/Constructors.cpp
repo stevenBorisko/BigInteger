@@ -19,6 +19,7 @@ BigInteger::BigInteger(const uint64_t& _size, const std::string& num):
 	const bool negative = (num[0] == '-');
 	for(uint64_t index = negative; index < num.length(); ++index)
 		(*this *= 10) += static_cast<uint64_t>(num[index] - '0');
+	if(negative) this->neg();
 }
 
 BigInteger::BigInteger(const BigInteger& rhs) :
