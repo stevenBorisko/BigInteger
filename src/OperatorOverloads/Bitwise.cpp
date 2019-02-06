@@ -4,9 +4,7 @@
 
 BigInteger BigInteger::operator~() const {
 	BigInteger ret = BigInteger(*this);
-	uint64_t index = this->size;
-	while(index--)
-		ret.digits[index] = ~(this->digits[index]);
+	ret.flip();
 	return ret;
 }
 
