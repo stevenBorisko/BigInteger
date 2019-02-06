@@ -193,3 +193,80 @@ BigInteger log(const BigInteger& num) {
 
 	return ret;
 }
+
+//TODO fucking finish this shit
+
+BigInteger::div_t div(const BigInteger& num1, const BigInteger& num2) {
+
+	// Handle errors
+
+	if(num1.size != num2.size) {
+		std::cerr << "div(const BigInteger&,const BigInteger&): unequal sizes\n";
+		exit(1);
+	}
+
+	if(num2.Z()) {
+		std::cerr << "div(const BigInteger&,const BigInteger&): division by zero\n";
+		exit(1);
+	}
+
+	// Easy sauce
+
+	BigInteger::div_t ret = {
+		.quot = BigInteger(num1),
+		.rem = BigInteger(num1.size)
+	};
+
+	if(&num1 == &num2) {
+		ret.quot = 1;
+		return ret;
+	}
+
+	if(num1.Z()) {
+		ret.quot = 0;
+		return ret;
+	}
+
+	// Calculation
+
+	BigInteger sor = BigInteger(num2);
+
+	bool num1Negative = num1.N();
+	bool num2Negative = num2.N();
+
+	bool negAns = (num1Negative ^ num2Negative);
+
+	if(num1Negative) ret.quot.neg();
+	if(num2Negative) sor.neg();
+
+	// More easy sauce
+	if(ret.quot <= sor) {
+		ret.quot = 0;
+		if(ret.quot < sor)
+			ret.rem = num1;
+		return ret;
+	}
+
+	BigInteger negSor = BigInteger(sor);
+	negSor.neg();
+
+	bool negative = false;
+	for(uint64_t i = ret.quot.size;i;--i) {
+		for(uint64_t j = 64;j;--j) {
+
+			negative = ret.rem.N();
+			ret.rem <<= 1;
+			ret.rem.digits[0] |= (ret.quot.N() & 1);
+			ret.quot <<= 1;
+			ret.rem += (negative ? sor : negSor);
+			ret.quot.digits[0] |= !ret.rem.N();
+
+		}
+	}
+
+	if(negAns) ret.quot.neg();
+	if(ret.rem.N()) ret.rem += sor;
+	if(num1Negative) ret.rem.neg();
+
+	return ret;
+}

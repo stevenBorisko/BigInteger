@@ -47,6 +47,10 @@ private:
 
 public:
 
+	// Data Types //
+
+	struct div_t;
+
 	// Constructors //
 
 	// creates a number of '_size' digits set to zero
@@ -94,6 +98,9 @@ public:
 	friend BigInteger gcd(const BigInteger& num1, const BigInteger& num2);
 	// Log base 2
 	friend BigInteger log(const BigInteger& num);
+	// Divides num1 by num2. Returns both the quotient and remainder such that
+	//     num1 == quot * num2 + rem
+	friend div_t div(const BigInteger& num1, const BigInteger& num2);
 
 	// SetFunctions //
 
@@ -210,5 +217,7 @@ BigInteger mersennePrime(
 	const uint64_t n,
 	std::ostream& progress
 );
+
+struct BigInteger::div_t { BigInteger quot; BigInteger rem; };
 
 #endif

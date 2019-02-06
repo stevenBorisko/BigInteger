@@ -223,16 +223,17 @@ BigInteger& BigInteger::operator%=(const BigInteger& rhs) {
 	BigInteger acc = BigInteger(this->size);
 	BigInteger sor = BigInteger(rhs);
 
-	if(this->N()) this->neg();
-	if(rhs.N()) sor.neg();
+	bool thisNegative = this->N();
+	bool rhsNegative = rhs.N();
 
+	if(thisNegative) this->neg();
+	if(rhsNegative) sor.neg();
+
+	// Another trivial case
 	if(*this <= sor) {
-		if(*this < sor)
-			return *this;
-		if(*this == sor) {
+		if(*this == sor)
 			this->zero();
-			return *this;
-		}
+		return *this;
 	}
 
 	BigInteger negSor = BigInteger(sor);
@@ -253,6 +254,7 @@ BigInteger& BigInteger::operator%=(const BigInteger& rhs) {
 	}
 
 	if(acc.N()) acc += sor;
+	if(thisNegative) acc.neg();
 
 	*this = acc;
 
