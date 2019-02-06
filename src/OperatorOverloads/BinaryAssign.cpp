@@ -97,6 +97,7 @@ BigInteger& BigInteger::operator*=(const BigInteger& rhs) {
 	return *this;
 }
 
+/*
 BigInteger& BigInteger::operator*=(const uint64_t& rhs) {
 
 	uint64_t acc = 0;
@@ -113,6 +114,7 @@ BigInteger& BigInteger::operator*=(const uint64_t& rhs) {
 
 	return *this;
 }
+*/
 
 // DIVISION //
 
@@ -170,6 +172,7 @@ BigInteger& BigInteger::operator/=(const BigInteger& rhs) {
 	return *this;
 }
 
+/*
 BigInteger& BigInteger::operator/=(const uint64_t& rhs) {
 
 	if(rhs == 0) {
@@ -202,6 +205,7 @@ BigInteger& BigInteger::operator/=(const uint64_t& rhs) {
 
 	return *this;
 }
+*/
 
 // MODULUS //
 
@@ -261,9 +265,11 @@ BigInteger& BigInteger::operator%=(const BigInteger& rhs) {
 	return *this;
 }
 
+/*
 BigInteger& BigInteger::operator%=(const uint64_t& rhs) {
 
-	if(this->N()) this->neg();
+	bool thisNegative = this->N();
+	if(thisNegative) this->neg();
 	if(this->Z()) return *this;
 
 	uint64_t acc = 0;
@@ -290,3 +296,4 @@ BigInteger& BigInteger::operator%=(const uint64_t& rhs) {
 
 	return *this;
 }
+*/
