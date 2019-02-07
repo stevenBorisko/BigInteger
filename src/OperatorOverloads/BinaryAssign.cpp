@@ -285,16 +285,20 @@ BigInteger& BigInteger::operator%=(const BigInteger& rhs) {
 	return *this;
 }
 
-/*
 BigInteger& BigInteger::operator%=(const uint64_t& rhs) {
 
-	bool thisNegative = this->N();
-	if(thisNegative) this->neg();
 	if(this->Z()) return *this;
 
+	uint64_t rhsCopy = rhs;
+
+	bool thisN = this->N();
+	bool rhsN = rhs & left;
+	bool negAns = (thisN ^ rhsN);
+	if(thisN) this->neg();
+	if(rhsN) rhsCopy = ~rhs + 1;
+
 	uint64_t acc = 0;
-	uint64_t negRHS = ~rhs;
-	++negRHS;
+	uint64_t negRHS = ~rhsCopy + 1;
 	bool negative = false;
 	for(uint64_t i = this->size;i;--i) {
 		for(uint64_t j = 64;j;--j) {
@@ -303,17 +307,20 @@ BigInteger& BigInteger::operator%=(const uint64_t& rhs) {
 			acc <<= 1;
 			acc |= (this->N() & 1);
 			*this <<= 1;
-			acc += (negative ? rhs : negRHS);
+			acc += (negative ? rhsCopy : negRHS);
 			this->digits[0] |= !(acc & left);
 
 		}
 	}
 
-	if(acc & left) acc += rhs;
+	if(acc & left) {
+		acc += rhsCopy;
+	}
 
 	this->zero();
 	this->digits[0] = acc;
 
+	if(thisN) this->neg();
+
 	return *this;
 }
-*/

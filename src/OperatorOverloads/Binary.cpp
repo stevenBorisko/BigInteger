@@ -64,10 +64,8 @@ BigInteger BigInteger::operator%(const BigInteger& rhs) const {
 	return ret;
 }
 
-/*
 BigInteger BigInteger::operator%(const uint64_t& rhs) const {
 	BigInteger ret = BigInteger(*this);
 	ret %= rhs;
 	return ret;
 }
-*/

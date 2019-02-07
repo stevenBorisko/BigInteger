@@ -139,7 +139,7 @@ public:
 	BigInteger operator/(const BigInteger& rhs) const;
 	BigInteger operator/(const uint64_t& rhs) const;
 	BigInteger operator%(const BigInteger& rhs) const;
-	//BigInteger operator%(const uint64_t& rhs) const;
+	BigInteger operator%(const uint64_t& rhs) const;
 
 	// Binary Assignment //
 	BigInteger& operator+=(const BigInteger& rhs);
@@ -151,7 +151,7 @@ public:
 	BigInteger& operator/=(const BigInteger& rhs);
 	BigInteger& operator/=(const uint64_t& rhs);
 	BigInteger& operator%=(const BigInteger& rhs);
-	//BigInteger& operator%=(const uint64_t& rhs);
+	BigInteger& operator%=(const uint64_t& rhs);
 
 	// Bitwise //
 	BigInteger operator~() const;
