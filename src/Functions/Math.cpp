@@ -194,8 +194,6 @@ BigInteger log(const BigInteger& num) {
 	return ret;
 }
 
-//TODO fucking finish this shit
-
 BigInteger::div_t div(const BigInteger& num1, const BigInteger& num2) {
 
 	// Handle errors
