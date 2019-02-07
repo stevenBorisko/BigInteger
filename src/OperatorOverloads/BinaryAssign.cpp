@@ -81,40 +81,58 @@ BigInteger& BigInteger::operator*=(const BigInteger& rhs) {
 		return *this;
 	}
 
+	BigInteger rhsCopy(rhs);
+
+	bool thisN = this->N();
+	bool rhsN = rhs.N();
+	bool negAns = (thisN ^ rhsN);
+	if(thisN) this->neg();
+	if(rhsN) rhsCopy.neg();
+
 	BigInteger acc = BigInteger(this->size);
 
 	for(uint64_t i = this->size;i;--i) {
 		for(uint64_t j = 64;j;--j) {
 
-			if(this->digits[0] & 1) acc += rhs;
+			if(this->digits[0] & 1) acc += rhsCopy;
 			*this >>= 1;
-			this->digits[this->size - 1] |= ((acc.digits[0] & 1) << 63);
+			this->digits[this->size - 1] |= ((acc.digits[0] & 1ULL) << 63);
 			acc >>= 1;
 
 		}
 	}
 
+	if(negAns) this->neg();
+
 	return *this;
 }
 
-/*
 BigInteger& BigInteger::operator*=(const uint64_t& rhs) {
+
+	uint64_t rhsCopy = rhs;
+
+	bool thisN = this->N();
+	bool rhsN = rhs & left;
+	bool negAns = (thisN ^ rhsN);
+	if(thisN) this->neg();
+	if(rhsN) rhsCopy = ~rhs + 1;
 
 	uint64_t acc = 0;
 	for(uint64_t i = this->size;i;--i) {
 		for(uint64_t j = 64;j;--j) {
 
-			if(this->digits[0] & 1) acc += rhs;
+			if(this->digits[0] & 1) acc += rhsCopy;
 			*this >>= 1;
-			this->digits[this->size - 1] |= ((acc & 1) << 63);
+			this->digits[this->size - 1] |= ((acc & 1ULL) << 63);
 			acc >>= 1;
 
 		}
 	}
 
+	if(negAns) this->neg();
+
 	return *this;
 }
-*/
 
 // DIVISION //
 
