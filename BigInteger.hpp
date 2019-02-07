@@ -137,7 +137,7 @@ public:
 	BigInteger operator*(const BigInteger& rhs) const;
 	BigInteger operator*(const uint64_t& rhs) const;
 	BigInteger operator/(const BigInteger& rhs) const;
-	//BigInteger operator/(const uint64_t& rhs) const;
+	BigInteger operator/(const uint64_t& rhs) const;
 	BigInteger operator%(const BigInteger& rhs) const;
 	//BigInteger operator%(const uint64_t& rhs) const;
 
@@ -149,7 +149,7 @@ public:
 	BigInteger& operator*=(const BigInteger& rhs);
 	BigInteger& operator*=(const uint64_t& rhs);
 	BigInteger& operator/=(const BigInteger& rhs);
-	//BigInteger& operator/=(const uint64_t& rhs);
+	BigInteger& operator/=(const uint64_t& rhs);
 	BigInteger& operator%=(const BigInteger& rhs);
 	//BigInteger& operator%=(const uint64_t& rhs);
 
